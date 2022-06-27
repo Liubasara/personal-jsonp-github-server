@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    window.jsonCb = function jsonCb(data) {
+      data.parseJson = JSON.parse(window.atob(data.data.content))
+      console.log(data)
+    }
+    function createReq() {
+      const jsonPScript = document.createElement('script')
+      jsonPScript.src = 'https://api.github.com/repos/Liubasara/personal-jsonp-github-server/contents/data1.json?ref=json-data&callback=jsonCb'
+      return jsonPScript
+    }
+    document.documentElement.appendChild(createReq())
+  </script>
+</body>
+</html>
